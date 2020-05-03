@@ -1,0 +1,17 @@
+image: Ubuntu1804
+
+branches:
+  only:
+    - master
+
+build: off
+
+install:
+  # запускаем SUT (запоминаем информацию о процессе в переменной $App)
+  - ps: $App = Start-Process -FilePath java -ArgumentList "-jar ./artifacts/app-order.jar" -PassThru
+
+build_script:
+  - ps: ./gradlew test --info "-Dselenide.headless=true"
+
+on_finish:
+  - ps: Stop-Process -Id $App.Id
