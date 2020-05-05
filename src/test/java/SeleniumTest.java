@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Test {
+public class SeleniumTest {
 
     private WebDriver driver;
 
