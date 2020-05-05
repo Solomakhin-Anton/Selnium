@@ -1,3 +1,4 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,6 +15,7 @@ public class SeleniumTest {
     @BeforeAll
     static void setUpAll() {
         System.setProperty("webdriver.chrome.driver", "./driver/chromedriver");
+        WebDriverManager.chromedriver().setup();
     }
 
     @BeforeEach
@@ -36,7 +38,6 @@ public class SeleniumTest {
         driver.findElement(By.cssSelector("button[type='button']")).click();
         String text = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
         assertEquals("  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text);
-
     }
 
     @org.junit.jupiter.api.Test
